@@ -1,8 +1,10 @@
 #!/bin/bash
 
+REPOS=('xascience-xacraft')
+
 set -e
 
-REPOS=('xascience-xacraft')
+mkdir ./dist/
 
 for REPO in "${REPOS[@]}"; do
     cd "$REPO"
