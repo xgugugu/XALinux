@@ -1,0 +1,24 @@
+# Maintainer: Xgugugu <xczwsz@outlook.com>
+
+pkgname="xascience-xacraft"
+pkgver=3.6
+pkgrel=0
+pkgdesc="XACRAFT Game made by XAScience"
+arch=('x86_64' 'aarch64')
+url="https://github.com/ShaXingAn/XACRAFT"
+license=('unknown')
+depends=('xterm' 'bash' 'glibc' 'gcc-libs' 'libx11' 'consolas-font')
+makedepends=('gcc')
+source=("https://github.com/xgugugu/XALinux/releases/download/xacraft/XACRAFT$pkgver.cpp"
+        "start.sh")
+sha256sums=("dd2440ee924b8efdd533d3e5b5bf5d039f6b3725da1d04b8d3d318a349e98e77"
+            "81cac4d5481ae005fbce69f31988fbdb164835e1435ef9c5cbfe32a422df85a8")
+
+build() {
+    g++ XACRAFT$pkgver.cpp -o XACRAFT -lX11 -std=c++98
+}
+
+package() {
+	install -Dm755 "./XACRAFT" "$pkgdir/usr/lib/xascience-xacraft/XACRAFT"
+    install -Dm755 "./start.sh" "$pkgdir/usr/bin/XACRAFT"
+}

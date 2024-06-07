@@ -1,0 +1,24 @@
+name: AUR
+
+on:
+    push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Initialize
+        uses: actions/setup-node@v3.6.0
+      - name: Build
+        uses: ./build-aur-action
+        with:
+          repos: ""
+      - name: Upload
+        uses: ncipollo/release-action@v1.12.0
+        with: 
+          allowUpdates: true
+          tag: "x86_64"
+          artifacts: "./dist/*.*"
+          token: ${{ secrets.ACCESS_TOKEN }}
